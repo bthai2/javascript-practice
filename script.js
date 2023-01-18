@@ -10,4 +10,34 @@ function getComputerChoice() {
     return CHOICES[randIdx];
 }
 
-console.log(getComputerChoice());
+function capitalize(str) {
+    let retVal = str.charAt(0).toUpperCase(); // capitalize first letter
+    let restOfString = str.slice(1);
+    return retVal + restOfString.toLowerCase();
+}
+
+function findWinner(playerChoice, computerChoice){
+    //player wins
+    let playerDub = (playerChoice == 'Rock' && computerChoice == 'Scissors') || 
+    (playerChoice == 'Paper' && computerChoice == 'Rock') || (playerChoice == 'Scissors' && computerChoice == 'Paper');
+    //computer wins
+    let computerDub = (computerChoice == 'Rock' && playerChoice == 'Scissors') || 
+    (computerChoice == 'Paper' && playerChoice == 'Rock') || (computerChoice == 'Scissors' && playerChoice == 'Paper');
+
+    if(playerDub) {
+        return 'You Win! ' + playerChoice + ' beats ' + computerChoice + '.';
+    } else if(computerDub) {
+        return 'You Lose! ' + computerChoice + ' beats ' + playerChoice + '.';
+    } else{ //tie
+        return 'It\'s a Tie!';
+    }
+}
+
+function oneRound(playerSelection, computerSelection) {
+    let playerChoice = capitalize(playerSelection);
+
+}
+
+console.log(findWinner('Rock', 'Scissors'));
+console.log(findWinner('Paper', 'Scissors'));
+console.log(findWinner('Scissors', 'Scissors'));
