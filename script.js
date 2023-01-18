@@ -16,13 +16,16 @@ function capitalize(str) {
     return retVal + restOfString.toLowerCase();
 }
 
-function findWinner(playerChoice, computerChoice){
+function playRound(playerSelection, computerSelection) {
+    let playerChoice = capitalize(playerSelection);
+    let computerChoice = capitalize(computerSelection);
+
     //player wins
-    let playerDub = (playerChoice == 'Rock' && computerChoice == 'Scissors') || 
-    (playerChoice == 'Paper' && computerChoice == 'Rock') || (playerChoice == 'Scissors' && computerChoice == 'Paper');
+    let playerDub = (playerChoice === 'Rock' && computerChoice === 'Scissors') || 
+    (playerChoice === 'Paper' && computerChoice === 'Rock') || (playerChoice === 'Scissors' && computerChoice === 'Paper');
     //computer wins
-    let computerDub = (computerChoice == 'Rock' && playerChoice == 'Scissors') || 
-    (computerChoice == 'Paper' && playerChoice == 'Rock') || (computerChoice == 'Scissors' && playerChoice == 'Paper');
+    let computerDub = (computerChoice === 'Rock' && playerChoice === 'Scissors') || 
+    (computerChoice === 'Paper' && playerChoice === 'Rock') || (computerChoice === 'Scissors' && playerChoice === 'Paper');
 
     if(playerDub) {
         return 'You Win! ' + playerChoice + ' beats ' + computerChoice + '.';
@@ -33,11 +36,25 @@ function findWinner(playerChoice, computerChoice){
     }
 }
 
-function oneRound(playerSelection, computerSelection) {
-    let playerChoice = capitalize(playerSelection);
+function game(){
+    let playerChoice, computerChoice;
+    let playerScore = 0, computerScore = 0; // keeps track of the scores for each player
+    while (playerScore < 5 && computerScore < 5){
+        playerChoice = prompt('Rock, Paper, or Scissors?');
+        computerChoice = getComputerChoice();
+        let output = playRound(playerChoice, computerChoice);
 
+        //adjust scores
+        if(output.includes('Win')){
+            playerScore++;
+        } else if(output.includes('Lose')){
+            computerScore++;
+        }
+
+        console.log(output);
+        console.log('Player: ' + playerScore + ' : ' + 'Computer: ' + computerScore);
+    }
+    console.log('Game Over!');
 }
 
-console.log(findWinner('Rock', 'Scissors'));
-console.log(findWinner('Paper', 'Scissors'));
-console.log(findWinner('Scissors', 'Scissors'));
+game();
