@@ -11,7 +11,7 @@ function addBtn(node, classButton, text){
 
 function setupGame(){
     let div = document.createElement('div');
-    div.setAttribute('style', 'display: flex; justify-content: space-around;');
+    div.classList.add('actions')
     //Rock
     addBtn(div, 'btn', 'Rock');
     //Paper
