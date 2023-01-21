@@ -1,4 +1,33 @@
 const CHOICES = ['Rock', 'Paper', 'Scissors'];
+const body = document.querySelector('body');
+const playBtn = document.querySelector('.btn');
+
+function addBtn(node, classButton, text){
+    let btn = document.createElement('button');
+    btn.classList.add(classButton);
+    btn.textContent = text;
+    node.appendChild(btn);
+}
+
+function setupGame(){
+    let div = document.createElement('div');
+    div.setAttribute('style', 'display: flex; justify-content: space-around;');
+    //Rock
+    addBtn(div, 'btn', 'Rock');
+    //Paper
+    addBtn(div, 'btn', 'Paper');
+    //Scissors
+    addBtn(div, 'btn', 'Scissors');
+
+    body.removeChild(playBtn);
+    body.appendChild(div);
+}
+
+// update UI to have buttons for the game
+playBtn.addEventListener('click', setupGame);
+
+
+//--------------------GAME LOGIC---------------------------------------
 
 function randomIndex(arrLength) {
     let rand = Math.random(); // gets number between 0 (inclusive) and 1 (exclusive)
@@ -56,5 +85,3 @@ function game(){
     }
     console.log('Game Over!');
 }
-
-game();

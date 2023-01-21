@@ -1,0 +1,28 @@
+body {
+    background-color: beige;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+}
+
+.btn {
+    height: 200px;
+    width: 400px;
+}
+
+.btn:hover {
+    background-color: lightgreen;
+}
