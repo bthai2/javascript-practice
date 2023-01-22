@@ -13,7 +13,9 @@ function addBtn(node, classButton, name){
     }
     // btn.textContent = text;
     let text = document.createElement('div');
+    text.classList.add('actions');
     text.textContent = name;
+    text.style.fontSize = '32px';
 
     container.appendChild(btn);
     container.appendChild(text);
@@ -26,9 +28,9 @@ function setupGame(){
     //Rock
     addBtn(div, 'action Rock', 'Rock');
     //Paper
-    addBtn(div, 'action', 'Paper');
+    addBtn(div, 'action Paper', 'Paper');
     //Scissors
-    addBtn(div, 'action', 'Scissors');
+    addBtn(div, 'action Scissors', 'Scissors');
 
     body.removeChild(playBtn);
     body.appendChild(div);

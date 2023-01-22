@@ -48,15 +48,26 @@ h1 {
     transition: all .2s ease-in-out;
 }
 
-.Rock {
-    background-image: url('./images/rock.png');
+.Rock, .Paper, .Scissors {
     background-size: 100%;
     border-radius: 50%;
     height: 200px;
     width: 200px;
 }
 
-.Rock:hover {
+.Rock {
+    background-image: url('./images/rock.png');
+}
+
+.Paper {
+    background-image: url('./images/paper.png');
+}
+
+.Scissors {
+    background-image: url('./images/scissors.png');
+}
+
+.Rock:hover, .Paper:hover, .Scissors:hover {
     transform: scale(0.9);
     cursor: pointer;
 }
