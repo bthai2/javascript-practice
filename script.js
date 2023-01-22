@@ -2,6 +2,8 @@ const CHOICES = ['Rock', 'Paper', 'Scissors'];
 const body = document.querySelector('body');
 const playBtn = document.querySelector('.btn');
 
+var pScore = 0, cScore = 0;
+
 function addBtn(node, classButton, name){
     let container = document.createElement('div');
 
@@ -22,7 +24,64 @@ function addBtn(node, classButton, name){
     node.appendChild(container);
 }
 
+function setupScores() {
+    let scores = document.createElement('div');
+    scores.classList.add('scores');
+
+    let player = document.createElement('div');
+    player.id = 'pScore';
+    player.textContent = 'Player: ' + pScore;
+
+    let computer = document.createElement('div');
+    computer.id = 'cScore';
+    computer.textContent = 'Computer: ' + cScore;
+
+    scores.appendChild(player);
+    scores.appendChild(computer);
+
+    return scores;
+}
+
+function setupInfoText(){
+    let div = document.createElement('div');
+    div.classList.add('information');
+    div.textContent = 'Score';
+
+    let scores = setupScores();
+
+    div.appendChild(scores);
+    body.appendChild(div);
+}
+
+function updateScores(){
+    let playerScore = document.getElementById('pScore');
+    let computerScore = document.getElementById('cScore');
+    playerScore.textContent = 'Player: ' + pScore;
+    computerScore.textContent = 'Computer: ' + cScore;
+}
+
 function setupGame(){
+    body.removeChild(playBtn);
+    setupInfoText();
+    setupButtons();
+
+    const rockButton = document.querySelector('button.Rock');
+    rockButton.addEventListener('click', () => {
+        actionClicked('rock');
+    });
+
+    const paperButton = document.querySelector('button.Paper');
+    paperButton.addEventListener('click', () => {
+        actionClicked('paper');
+    });
+
+    const scissorsButton = document.querySelector('button.Scissors');
+    scissorsButton.addEventListener('click', () => {
+        actionClicked('scissors');
+    });
+}
+
+function setupButtons(){
     let div = document.createElement('div');
     div.classList.add('actions');
     //Rock
@@ -32,8 +91,20 @@ function setupGame(){
     //Scissors
     addBtn(div, 'action Scissors', 'Scissors');
 
-    body.removeChild(playBtn);
     body.appendChild(div);
+}
+
+function actionClicked(action){
+    let computerChoice = getComputerChoice();
+    let output = playRound(action, computerChoice);
+
+    if(output.includes('Win')){
+        pScore++;
+    } else if(output.includes('Lose')){
+        cScore++;
+    }
+    console.log(output);
+    updateScores();
 }
 
 // update UI to have buttons for the game

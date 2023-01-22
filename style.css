@@ -5,6 +5,9 @@ body {
     align-items: center;
     flex-direction: column;
     height: 100vh;
+}
+
+.action, body, .btn {
     font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
 }
 
@@ -14,11 +17,11 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    gap: 64px;
+    gap: 8%;
 }
 
-h1 {
-    text-align: center;
+.btn, .information, .score, .action {
+    font-size: 32px;
 }
 
 .btn {
@@ -26,9 +29,7 @@ h1 {
     width: 400px;
     border-radius: 8px;
     border-color: black;
-    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
     background-color: lightgreen;
-    font-size: 32px;
     transition: all .2s ease-in-out;
 }
 
@@ -42,9 +43,7 @@ h1 {
     width: 400px;
     border-radius: 8px;
     border-color: black;
-    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
     background-color: lightgreen;
-    font-size: 32px;
     transition: all .2s ease-in-out;
 }
 
@@ -70,4 +69,20 @@ h1 {
 .Rock:hover, .Paper:hover, .Scissors:hover {
     transform: scale(0.9);
     cursor: pointer;
+}
+
+.information {
+    border: 2px solid black;
+    border-radius: 16px;
+    height: 200px;
+    width: 895px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.scores {
+    display:flex; 
+    justify-content:space-around;
 }
