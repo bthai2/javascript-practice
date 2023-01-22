@@ -45,19 +45,30 @@ function setupScores() {
 function setupInfoText(){
     let div = document.createElement('div');
     div.classList.add('information');
-    div.textContent = 'Score';
+
+    let text = document.createElement('div');
+    text.style.cssText = 'font-size:40px; font-weight: bold;';
+    text.textContent = 'Score';
+
+    let outputDialog = document.createElement('div');
+    outputDialog.id = 'output';
 
     let scores = setupScores();
 
+    div.appendChild(text);
+    div.appendChild(outputDialog);
     div.appendChild(scores);
     body.appendChild(div);
 }
 
-function updateScores(){
+function updateText(output){
     let playerScore = document.getElementById('pScore');
     let computerScore = document.getElementById('cScore');
+    let outputDialog = document.getElementById('output');
+    
     playerScore.textContent = 'Player: ' + pScore;
     computerScore.textContent = 'Computer: ' + cScore;
+    outputDialog.textContent = output;
 }
 
 function setupGame(){
@@ -104,7 +115,7 @@ function actionClicked(action){
         cScore++;
     }
     console.log(output);
-    updateScores();
+    updateText(output);
 }
 
 // update UI to have buttons for the game
