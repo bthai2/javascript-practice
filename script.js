@@ -2,22 +2,33 @@ const CHOICES = ['Rock', 'Paper', 'Scissors'];
 const body = document.querySelector('body');
 const playBtn = document.querySelector('.btn');
 
-function addBtn(node, classButton, text){
+function addBtn(node, classButton, name){
+    let container = document.createElement('div');
+
     let btn = document.createElement('button');
-    btn.classList.add(classButton);
-    btn.textContent = text;
-    node.appendChild(btn);
+    // btn.classList.add(classButton.split(' '));
+    let classes = classButton.split(' ');
+    for(let cssClass of classes){
+        btn.classList.add(cssClass);
+    }
+    // btn.textContent = text;
+    let text = document.createElement('div');
+    text.textContent = name;
+
+    container.appendChild(btn);
+    container.appendChild(text);
+    node.appendChild(container);
 }
 
 function setupGame(){
     let div = document.createElement('div');
-    div.classList.add('actions')
+    div.classList.add('actions');
     //Rock
-    addBtn(div, 'btn', 'Rock');
+    addBtn(div, 'action Rock', 'Rock');
     //Paper
-    addBtn(div, 'btn', 'Paper');
+    addBtn(div, 'action', 'Paper');
     //Scissors
-    addBtn(div, 'btn', 'Scissors');
+    addBtn(div, 'action', 'Scissors');
 
     body.removeChild(playBtn);
     body.appendChild(div);

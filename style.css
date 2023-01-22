@@ -5,13 +5,16 @@ body {
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
 }
 
 .actions {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    justify-content: center;
     align-items: center;
     width: 100%;
+    gap: 64px;
 }
 
 h1 {
@@ -21,8 +24,39 @@ h1 {
 .btn {
     height: 200px;
     width: 400px;
+    border-radius: 8px;
+    border-color: black;
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    background-color: lightgreen;
+    font-size: 32px;
+    transition: all .2s ease-in-out;
 }
 
 .btn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.action {
+    height: 200px;
+    width: 400px;
+    border-radius: 8px;
+    border-color: black;
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
     background-color: lightgreen;
+    font-size: 32px;
+    transition: all .2s ease-in-out;
+}
+
+.Rock {
+    background-image: url('./images/rock.png');
+    background-size: 100%;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}
+
+.Rock:hover {
+    transform: scale(0.9);
+    cursor: pointer;
 }
