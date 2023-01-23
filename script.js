@@ -2,6 +2,8 @@ const CHOICES = ['Rock', 'Paper', 'Scissors'];
 const body = document.querySelector('body');
 const playBtn = document.querySelector('.btn');
 
+var informationTextVisible = true;
+
 var pScore = 0, cScore = 0;
 
 function addAction(node, classButton, name){
@@ -49,15 +51,17 @@ function setupInfoText(){
 
     let text = document.createElement('div');
     text.classList.add('infoText');
+    text.classList.add('visible');
     text.textContent = 'Score';
-    text.style.visibility = 'hidden';
+    // text.style.visibility = 'hidden';
 
     let outputDialog = document.createElement('div');
     outputDialog.id = 'output';
     outputDialog.textContent = 'Select Rock, Paper, or Scissors to Start';
 
     let scores = setupScores();
-    scores.style.visibility = 'hidden';
+    scores.classList.add('visible');
+    // scores.style.visibility = 'hidden';
 
     div.appendChild(text);
     div.appendChild(outputDialog);
@@ -77,17 +81,38 @@ function toggleButtons(){
 }
 
 function toggleText(){
-    let score = document.querySelector('.infoText');
-    let pScoreText = document.getElementById('pScore');
-    let cScoreText = document.getElementById('cScore');
+    let scoreText = document.querySelector('.infoText');
+    let scores = document.querySelector('.scores');
+    scoreText.classList.toggle('visible');
+    scores.classList.toggle('visible');
 }
 
-function restartGame(){
-
+function resetScores() {
+    pScore = 0;
+    cScore = 0;
+    informationTextVisible = true;
+    toggleText();
 }
 
 function resetGame(){
+    resetScores();
+    //remove buttons
+    let buttons = document.querySelector('.actions');
+    body.removeChild(buttons);
+    //remove info text
+    let informationText = document.querySelector('.information');
+    body.removeChild(informationText);
+    //add play button
+    let button = document.createElement('button');
+    button.classList.add('btn');
+    button.textContent = 'Play!';
+    button.addEventListener('click', setupGame);
+    body.appendChild(button);
+}
 
+function restartGame(){
+    // toggleText();
+    resetScores();
 }
 
 function endGame(){
@@ -141,7 +166,8 @@ function updateText(output){
 }
 
 function setupGame(){
-    body.removeChild(playBtn);
+    let btn = document.querySelector('.btn');
+    body.removeChild(btn);
     setupInfoText();
     setupButtons();
 
@@ -178,6 +204,11 @@ function setupButtons(){
 }
 
 function actionClicked(action){
+    if(informationTextVisible){
+        toggleText();
+        informationTextVisible = false; //reset this var when game end
+    }
+
     let computerChoice = getComputerChoice();
     let output = playRound(action, computerChoice);
 

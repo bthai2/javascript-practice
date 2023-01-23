@@ -88,6 +88,10 @@ body {
     justify-content:space-around;
 }
 
+.visible {
+    visibility: hidden;
+}
+
 .infoText {
     font-size:40px; 
     font-weight: bold;
