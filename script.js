@@ -122,6 +122,8 @@ function restartGame(){
 
     div.insertBefore(instructions, div.lastChild);
     toggleButtons();
+
+    div.firstChild.textContent = 'Score';
 }
 
 function endGame(){
