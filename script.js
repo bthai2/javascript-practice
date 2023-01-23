@@ -4,7 +4,7 @@ const playBtn = document.querySelector('.btn');
 
 var pScore = 0, cScore = 0;
 
-function addBtn(node, classButton, name){
+function addAction(node, classButton, name){
     let container = document.createElement('div');
 
     let btn = document.createElement('button');
@@ -14,12 +14,13 @@ function addBtn(node, classButton, name){
         btn.classList.add(cssClass);
     }
     // btn.textContent = text;
+    
     let text = document.createElement('div');
     text.classList.add('actions');
     text.textContent = name;
     text.style.fontSize = '32px';
 
-    container.appendChild(btn);
+    container.append(btn);
     container.appendChild(text);
     node.appendChild(container);
 }
@@ -47,18 +48,82 @@ function setupInfoText(){
     div.classList.add('information');
 
     let text = document.createElement('div');
-    text.style.cssText = 'font-size:40px; font-weight: bold;';
+    text.classList.add('infoText');
     text.textContent = 'Score';
+    text.style.visibility = 'hidden';
 
     let outputDialog = document.createElement('div');
     outputDialog.id = 'output';
+    outputDialog.textContent = 'Select Rock, Paper, or Scissors to Start';
 
     let scores = setupScores();
+    scores.style.visibility = 'hidden';
 
     div.appendChild(text);
     div.appendChild(outputDialog);
     div.appendChild(scores);
     body.appendChild(div);
+}
+
+function toggleButtons(){
+    const rockButton = document.querySelector('button.Rock');
+    rockButton.disabled = !rockButton.disabled;
+
+    const paperButton = document.querySelector('button.Paper');
+    paperButton.disabled = !paperButton.disabled;
+
+    const scissorsButton = document.querySelector('button.Scissors');
+    scissorsButton.disabled = !scissorsButton.disabled;
+}
+
+function toggleText(){
+    let score = document.querySelector('.infoText');
+    let pScoreText = document.getElementById('pScore');
+    let cScoreText = document.getElementById('cScore');
+}
+
+function restartGame(){
+
+}
+
+function resetGame(){
+
+}
+
+function endGame(){
+    // empty score textbox by removing 'information' container
+    // child nodes
+    let informationBox = document.querySelector('.information');
+    
+    informationBox.removeChild(informationBox.childNodes[1]);
+
+    // change infoText information
+    informationBox.firstChild.textContent = 'Game Over!';
+
+    toggleButtons();
+
+    // add game over buttons
+    let playAgainBtn = document.createElement('button');
+    playAgainBtn.classList.add('playAgain');
+    playAgainBtn.textContent = 'Play Again';
+    playAgainBtn.addEventListener('click', () => {
+        restartGame();
+    });
+
+    let gameOverBtn = document.createElement('button');
+    gameOverBtn.classList.add('gameOver');
+    gameOverBtn.textContent = 'Game Over';
+    gameOverBtn.addEventListener('click', () => {
+        resetGame();
+    })
+
+    let div = document.createElement('div');
+    div.classList.add('scores');
+
+    div.appendChild(playAgainBtn);
+    div.appendChild(gameOverBtn);
+
+    informationBox.insertBefore(div, informationBox.lastChild);
 }
 
 function updateText(output){
@@ -69,6 +134,10 @@ function updateText(output){
     playerScore.textContent = 'Player: ' + pScore;
     computerScore.textContent = 'Computer: ' + cScore;
     outputDialog.textContent = output;
+
+    if(pScore === 5 || cScore === 5){
+        endGame();
+    }
 }
 
 function setupGame(){
@@ -79,16 +148,19 @@ function setupGame(){
     const rockButton = document.querySelector('button.Rock');
     rockButton.addEventListener('click', () => {
         actionClicked('rock');
+        console.log('rock');
     });
 
     const paperButton = document.querySelector('button.Paper');
     paperButton.addEventListener('click', () => {
         actionClicked('paper');
+        console.log('paper');
     });
 
     const scissorsButton = document.querySelector('button.Scissors');
     scissorsButton.addEventListener('click', () => {
         actionClicked('scissors');
+        console.log('scissors');
     });
 }
 
@@ -96,11 +168,11 @@ function setupButtons(){
     let div = document.createElement('div');
     div.classList.add('actions');
     //Rock
-    addBtn(div, 'action Rock', 'Rock');
+    addAction(div, 'action Rock', 'Rock');
     //Paper
-    addBtn(div, 'action Paper', 'Paper');
+    addAction(div, 'action Paper', 'Paper');
     //Scissors
-    addBtn(div, 'action Scissors', 'Scissors');
+    addAction(div, 'action Scissors', 'Scissors');
 
     body.appendChild(div);
 }
@@ -114,7 +186,6 @@ function actionClicked(action){
     } else if(output.includes('Lose')){
         cScore++;
     }
-    console.log(output);
     updateText(output);
 }
 
@@ -158,25 +229,4 @@ function playRound(playerSelection, computerSelection) {
     } else{ //tie
         return 'It\'s a Tie!';
     }
-}
-
-function game(){
-    let playerChoice, computerChoice;
-    let playerScore = 0, computerScore = 0; // keeps track of the scores for each player
-    while (playerScore < 5 && computerScore < 5){
-        playerChoice = prompt('Rock, Paper, or Scissors?');
-        computerChoice = getComputerChoice();
-        let output = playRound(playerChoice, computerChoice);
-
-        //adjust scores
-        if(output.includes('Win')){
-            playerScore++;
-        } else if(output.includes('Lose')){
-            computerScore++;
-        }
-
-        console.log(output);
-        console.log('Player: ' + playerScore + ' : ' + 'Computer: ' + computerScore);
-    }
-    console.log('Game Over!');
 }

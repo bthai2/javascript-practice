@@ -20,7 +20,8 @@ body {
     gap: 8%;
 }
 
-.btn, .information, .score, .action {
+.btn, .information, .score, 
+.action, .playAgain, .gameOver {
     font-size: 32px;
 }
 
@@ -85,4 +86,21 @@ body {
 .scores {
     display:flex; 
     justify-content:space-around;
+}
+
+.infoText {
+    font-size:40px; 
+    font-weight: bold;
+}
+
+.playAgain, .gameOver {
+    padding: 20px;
+}
+
+.playAgain {
+
+}
+
+.gameOver {
+
 }
