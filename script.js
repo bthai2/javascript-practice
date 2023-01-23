@@ -112,7 +112,16 @@ function resetGame(){
 
 function restartGame(){
     // toggleText();
+    let div = document.querySelector('.information');
+    let buttons = document.querySelector('.scores');
+    div.removeChild(buttons);
     resetScores();
+    let instructions = document.createElement('div');
+    instructions.id = 'output';
+    instructions.textContent = 'Select Rock, Paper, or Scissors to Start';
+
+    div.insertBefore(instructions, div.lastChild);
+    toggleButtons();
 }
 
 function endGame(){
