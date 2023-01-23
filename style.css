@@ -30,11 +30,10 @@ body {
     width: 400px;
     border-radius: 8px;
     border-color: black;
-    background-color: lightgreen;
     transition: all .2s ease-in-out;
 }
 
-.btn:hover {
+.btn:hover, .playAgain:hover, .gameOver:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
@@ -101,10 +100,10 @@ body {
     padding: 20px;
 }
 
-.playAgain {
-
+.playAgain, .btn {
+    background-color: lightgreen;
 }
 
 .gameOver {
-
+    background-color: lightcoral;
 }
